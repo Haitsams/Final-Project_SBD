@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   const [auctions, setAuctions] = useState([]);
   const [keyword, setKeyword] = useState('');
-  
   const [category, setCategory] = useState('');
   const [status, setStatus] = useState(''); 
 
-const BACKEND_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auctions`;
+  const BACKEND_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auctions`;
 
   const fetchAuctions = async () => {
     try {
@@ -37,6 +36,7 @@ const BACKEND_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/
   const handleSearch = (e) => {
     e.preventDefault(); 
     fetchAuctions();
+  }; 
 
   const handleResetFilter = () => {
     setKeyword('');
@@ -45,7 +45,7 @@ const BACKEND_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 p-4">
       {/* BAGIAN ATAS: Judul & Form Pencarian */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 border-b pb-6">
         <h1 className="text-3xl font-bold">Lelang Berlangsung</h1>
@@ -148,5 +148,4 @@ const BACKEND_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/
       </div>
     </div>
   );
-  }
-}
+} 
