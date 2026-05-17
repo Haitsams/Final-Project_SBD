@@ -6,7 +6,7 @@ export default function Home() {
   const [keyword, setKeyword] = useState('');
   const [category, setCategory] = useState(''); 
 
-  const BACKEND_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auctions`;
+  const BACKEND_URL = `${import.meta.env.VITE_API_URL}/api/auctions`;
 
   const fetchAuctions = async () => {
     try {
