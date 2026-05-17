@@ -1,0 +1,14 @@
+const Redis = require('ioredis');
+require('dotenv').config();
+
+const redis = new Redis(process.env.REDIS_URL);
+
+redis.on('connect', () => {
+  console.log('Redis: Berhasil terhubung');
+});
+
+redis.on('error', (err) => {
+  console.error('Error connection Redis:', err);
+});
+
+module.exports = redis;
