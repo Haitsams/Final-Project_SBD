@@ -94,20 +94,6 @@ export default function Home() {
               <option value="koleksi">Barang Koleksi</option>
             </select>
           </div>
-
-          {/* Filter Status */}
-          <div>
-            <label className="text-sm font-semibold text-gray-600 block mb-1">Status Lelang</label>
-            <select 
-              value={status} 
-              onChange={(e) => setStatus(e.target.value)}
-              className="w-full border p-2 rounded-md outline-none bg-gray-50 focus:bg-white focus:border-blue-500 text-sm"
-            >
-              <option value="">Semua Status</option>
-              <option value="active">Sedang Berjalan</option>
-              <option value="ended">Sudah Berakhir</option>
-            </select>
-          </div>
         </div>
 
         {/* CONTAINER HASIL LELANG */}
