@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   const [auctions, setAuctions] = useState([]);
   const [keyword, setKeyword] = useState('');
-  const [category, setCategory] = useState('');
-  const [status, setStatus] = useState(''); 
+  const [category, setCategory] = useState(''); 
 
   const BACKEND_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auctions`;
 
@@ -13,8 +12,7 @@ export default function Home() {
     try {
       const params = new URLSearchParams();
       if (keyword) params.append('search', keyword);
-      if (category) params.append('category', category);
-      if (status) params.append('status', status);
+      if (category) params.append('category', category); // Hanya mengirim parameter search dan category
 
       const url = params.toString() ? `${BACKEND_URL}?${params.toString()}` : BACKEND_URL;
 
@@ -29,9 +27,10 @@ export default function Home() {
     }
   };
 
+  // Hanya berjalan ulang secara otomatis jika kategori diubah oleh user
   useEffect(() => {
     fetchAuctions();
-  }, [category, status]);
+  }, [category]);
 
   const handleSearch = (e) => {
     e.preventDefault(); 
@@ -40,8 +39,7 @@ export default function Home() {
 
   const handleResetFilter = () => {
     setKeyword('');
-    setCategory('');
-    setStatus('');
+    setCategory(''); // Membersihkan reset status yang tidak terpakai
   };
 
   return (
@@ -134,4 +132,4 @@ export default function Home() {
       </div>
     </div>
   );
-} 
+}
