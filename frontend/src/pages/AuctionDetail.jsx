@@ -11,7 +11,7 @@ export default function AuctionDetail() {
 
   const fetchAuctionDetail = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/auctions/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auctions/${id}`);
       const data = await response.json();
       if (data.success) {
         setAuction(data.auction);

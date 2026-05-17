@@ -8,7 +8,7 @@ export default function Profile() {
   const fetchProfile = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:3000/api/users/profile', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/profile`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -28,7 +28,7 @@ export default function Profile() {
     const token = localStorage.getItem('token');
     
     try {
-      const response = await fetch('http://localhost:3000/api/users/topup', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/topup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
