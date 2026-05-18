@@ -3,10 +3,18 @@ import { useNavigate } from 'react-router-dom';
 
 export default function InitiateAuction() {
   const [itemName, setItemName] = useState('');
+  const [category, setCategory] = useState(''); // <-- State baru untuk kategori
   const [imageUrl, setImageUrl] = useState('');
   const [startPrice, setStartPrice] = useState('');
   const [duration, setDuration] = useState('');
   const navigate = useNavigate();
+
+  const categories = [
+    { value: 'elektronik', label: 'Elektronik' },
+    { value: 'pakaian', label: 'Pakaian' },
+    { value: 'sepatu', label: 'Sepatu' },
+    { value: 'hobi', label: 'Barang Koleksi' },
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +29,7 @@ export default function InitiateAuction() {
         },
         body: JSON.stringify({
           item_name: itemName,
+          category: category, 
           image_url: imageUrl,
           start_price: parseInt(startPrice),
           duration_minutes: parseInt(duration)
@@ -31,7 +40,7 @@ export default function InitiateAuction() {
 
       if (data.success) {
         alert('Lelang berhasil dibuat!');
-        navigate('/'); // Pindah ke Home
+        navigate('/'); 
       } else {
         alert('Gagal: ' + data.error);
       }
@@ -48,6 +57,24 @@ export default function InitiateAuction() {
           <label className="block mb-1 font-semibold">Nama Barang</label>
           <input type="text" value={itemName} onChange={(e) => setItemName(e.target.value)} className="w-full border p-2 rounded" placeholder="Misal: Sepatu Nike" required />
         </div>
+
+        <div>
+          <label className="block mb-1 font-semibold">Kategori Barang</label>
+          <select 
+            value={category} 
+            onChange={(e) => setCategory(e.target.value)} 
+            className="w-full border p-2 rounded bg-white" 
+            required
+          >
+            <option value="" disabled>-- Pilih Kategori --</option>
+            {categories.map((cat) => (
+              <option key={cat.value} value={cat.value}>
+                {cat.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div>
           <label className="block mb-1 font-semibold">URL Gambar Barang</label>
           <input type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className="w-full border p-2 rounded" placeholder="https://..." required />
